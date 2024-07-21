@@ -1,0 +1,24 @@
+h1{
+    color: bisque;
+    height: 10px;
+    text-align: center;
+}
+li{
+    display: flex;
+    color: rgb(232, 221, 221);
+    font-weight: bolder;
+    font-size: larger;
+    background-color: none;
+}
+.high-priority {
+    color: red;
+  }
+  
+  .medium-priority {
+    color: yellow;
+  }
+  
+  .low-priority {
+    color: green;
+  }
+  

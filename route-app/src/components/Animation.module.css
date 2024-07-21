@@ -1,0 +1,51 @@
+.anime
+{
+    width: 350px;
+    height: 150px;
+    border: 12px solid wheat;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    margin-top: 150px;
+    background-color: aqua;
+    opacity: 0.5;
+    border-radius: 10px;
+    animation-name: Change;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s;
+}
+.anime p{
+    opacity: none;
+    text-transform: uppercase;
+    text-shadow: turquoise;
+    font-weight: bolder;
+}
+@keyframes Change {
+    0%   {background-color: red;
+        border: 12px solid rgb(10, 9, 8);
+        color: aliceblue;
+    
+    }
+
+
+    25%  {background-color: yellow;
+        border: 12px solid rgb(169, 96, 23);
+        color: rgb(168, 8, 8);
+        font-weight: bolder;
+    
+    }
+    50%  {background-color: rgb(237, 237, 246);
+        border: 12px solid rgb(13, 93, 158);
+        color: #050a0e;
+        font-style: italic;
+        font-weight: lighter;
+        font-family: Arial, Helvetica, sans-serif;
+    
+    }
+    100% {background-color: green;
+        border: 12px solid rgb(182, 17, 111);
+        color: rgb(2, 2, 22);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: oblique;}
+  }
