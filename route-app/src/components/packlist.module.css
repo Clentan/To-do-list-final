@@ -1,14 +1,13 @@
 h1{
-    color: bisque;
+    color: rgb(232, 230, 229);
     height: 10px;
     text-align: center;
 }
 li{
     display: flex;
-    color: rgb(232, 221, 221);
+    color: rgb(246, 241, 241);
     font-weight: bolder;
     font-size: larger;
-    background-color: none;
 }
 .high-priority {
     color: red;
@@ -21,4 +20,9 @@ li{
   .low-priority {
     color: green;
   }
-  
+  ul 
+ .packlist ul {
+
+  border-radius: 50px;
+  opacity: 0.9;
+  }

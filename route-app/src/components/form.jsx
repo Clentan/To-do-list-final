@@ -1,91 +1,69 @@
-
-import React, { useState } from 'react';
-// import Style from './form.module.css';
-
-
-// prevent page submission default✔️
-//Take control of the inout elsments so rhat you can chnange them the way you want them to be✔️
-//Now take care of the form and and render the element✖️
-//How to do i want the form to look like❌
-//Store my set of state in an array..push using using an array✔️
-//pasing the button to another component.✔️
+import React, { useState, useEffect } from 'react';
+import './form.module.css';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
-  const [credentials, setCredentials] = useState('');
-  // const [items, setItems] = useState([]);//this it naturally create an array
   const [items, setItems] = useState(() => {
     const savedItems = localStorage.getItem('items');
     return savedItems ? JSON.parse(savedItems) : [];
   });
+  const [search, setSearch] = useState('');
 
-
-
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
 
   function FormSubmit(e) {
     e.preventDefault();
-    if (!name || !surname || !credentials) return;
-    const newItem = { id: Date.now(), name, surname, credentials, packed: false };
+    if (!name || !surname) return;
 
-    const newItems = [...items, newItem];//adding
+    const newItem = { id: Date.now(), name, surname, packed: false };
+    const newItems = [...items, newItem];
     setItems(newItems);
-    localStorage.setItem('items', JSON.stringify(newItems));
-
     setName('');
     setSurname('');
-    setCredentials('');
-    console.log(newItems)
   }
 
-  // function FormSubmit(e) {
-  //   e.preventDefault();
-  //   setName('');
-  //   setSurname("");
-  //   setCredentials("");
-  //   HandleAddSubmit(HandleAddSubmit);
-  //   if (!name && surname) return;
-  //   const NewArray = { name, surname, packed: false };
-  //   console.log(NewArray);
-  //
-  //
-  // }
-  // function HandleAddSubmit(item) {
-  //   setItems((items) => [...items, item]);
-  //   console.log(items);
-  // }
-  //
+  const filteredItems = items.filter(item => 
+    item.name.toLowerCase().includes(search.toLowerCase()) ||
+    item.surname.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div >
-      <form onSubmit={FormSubmit}>
-        <label>Surname😊:</label>
+    <div>
+      <form>
         <input
-          type='text'
-          placeholder='CHAUKE'
-          value={surname}
-          onChange={(e) => setSurname(e.target.value)} />
-
-        <label>Name😒:</label>
-        <input
-          type='text'
-          placeholder='CHAUKE'
-          value={name}
-          onChange={(e) => setName(e.target.value)} />
-
-
-        <label>Credentials😍:</label>
-        <input
-          type='text'
-          placeholder='CHAUKE'
-          value={credentials}
-          onChange={(e) => setCredentials(e.target.value)} />
-
-
-        <button type="submit"
-          value={items}
-          onChange={(e) => (setItems(e.target.value))}
-        >Submit::✔️</button>
+          placeholder='Search'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button type="button" onClick={() => setSearch('')}>Clear Search</button>
       </form>
+      <form onSubmit={FormSubmit}>
+        <label>ITEM: NAME:</label>
+        <input
+          type='text'
+          placeholder='e.g: Banana'
+          value={surname}
+          onChange={(e) => setSurname(e.target.value)} 
+        />
+        <label>Description of your item:</label>
+        <input
+          type='text'
+          placeholder='e.g: yellow in color'
+          value={name}
+          onChange={(e) => setName(e.target.value)} 
+        />
+        <button type="submit">ADD::😋</button>
+      </form>
+      <ul>
+        {filteredItems.map(item => (
+          <li key={item.id}>
+            {item.surname} - {item.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

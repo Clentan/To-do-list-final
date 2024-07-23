@@ -58,6 +58,8 @@ export default function Packlist() {
     setItems(updatedItems);
     localStorage.setItem('items', JSON.stringify(updatedItems));
     setEditedItem({});
+
+
   };
 
   // Get CSS class for priority
@@ -76,7 +78,9 @@ export default function Packlist() {
 
   return (
     <div className={Styles.Packlist}>
-      <h1>Registration List</h1>
+      <h1>ITEMS FOR TO-DO-LIST</h1>
+     
+      <input tyoe='tex' ></input>
       <ul>
         {items.length > 0 ? (
           items.map((item) => (
